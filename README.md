@@ -9,3 +9,11 @@ This use case represents the starting point of the Hotel Booking Management Syst
 - Displays a welcome message to the user
 - Confirms that the system has initialized successfully
 
+## Use Case 2 – Basic Room Types & Static Availability
+
+This use case initializes different room types in the hotel system.
+
+- Creates basic room types: Single Room, Double Room, and Suite Room
+- Assigns predefined attributes such as number of beds, room size, and price per night
+- Displays room details for each room type
+- Shows static availability for each room type
