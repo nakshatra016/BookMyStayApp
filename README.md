@@ -17,3 +17,12 @@ This use case initializes different room types in the hotel system.
 - Assigns predefined attributes such as number of beds, room size, and price per night
 - Displays room details for each room type
 - Shows static availability for each room type
+
+## Use Case 3 – Centralized Room Inventory Management
+
+This use case manages room availability using a centralized inventory system.
+
+- Stores available room counts using a map-based inventory
+- Initializes default availability for Single, Double, and Suite rooms
+- Retrieves room pricing and characteristics from room objects
+- Displays room details along with current availability
