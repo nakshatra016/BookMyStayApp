@@ -44,3 +44,12 @@ This use case demonstrates how booking requests are handled using a queue.
 - Stores requests in a FIFO queue
 - Processes booking requests in the order they were received
 - Ensures fair request handling without modifying room inventory
+
+## Use Case 6 – Reservation Confirmation & Room Allocation
+
+This use case confirms booking requests and assigns rooms.
+
+- Processes booking requests from the queue in FIFO order
+- Generates unique room IDs for each confirmed booking
+- Updates room availability immediately after allocation
+- Ensures that no room is double booked
