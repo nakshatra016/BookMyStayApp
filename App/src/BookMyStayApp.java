@@ -165,6 +165,7 @@ class RoomSearchService {
         }
     }
 }
+
 class Reservation {
 
     private String guestName;

@@ -53,3 +53,4 @@ This use case confirms booking requests and assigns rooms.
 - Generates unique room IDs for each confirmed booking
 - Updates room availability immediately after allocation
 - Ensures that no room is double booked
+
