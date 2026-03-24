@@ -99,3 +99,12 @@ This use case simulates multiple users booking rooms simultaneously.
 - Synchronizes access to shared resources like booking queue and inventory
 - Prevents race conditions during room allocation
 - Demonstrates thread-safe booking processing
+
+## Use Case 12 – Data Persistence & System Recovery
+
+This use case demonstrates saving and restoring system inventory using a file.
+
+- Saves room inventory to a text file
+- Loads inventory data during system startup
+- Restores previous system state if data exists
+- Uses simple file-based persistence without databases
