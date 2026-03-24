@@ -71,3 +71,12 @@ This use case stores confirmed reservations and generates booking reports.
 - Stores booking history in ordered form
 - Generates a report of all confirmed bookings
 - Separates reporting logic from data storage
+
+## Use Case 9 – Error Handling & Validation
+
+This use case validates booking requests before they are processed.
+
+- Accepts user input for guest name and room type
+- Validates booking details using centralized validation logic
+- Uses a custom exception for domain-specific errors
+- Handles invalid booking scenarios gracefully
