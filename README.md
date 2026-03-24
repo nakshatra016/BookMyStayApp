@@ -54,3 +54,11 @@ This use case confirms booking requests and assigns rooms.
 - Updates room availability immediately after allocation
 - Ensures that no room is double booked
 
+## Use Case 7 – Add-On Service Selection
+
+This use case allows optional services to be attached to a confirmed reservation.
+
+- Creates optional services such as breakfast or spa
+- Associates services with a reservation ID
+- Supports attaching multiple services to a reservation
+- Calculates the total cost of selected add-on services
