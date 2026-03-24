@@ -62,3 +62,12 @@ This use case allows optional services to be attached to a confirmed reservation
 - Associates services with a reservation ID
 - Supports attaching multiple services to a reservation
 - Calculates the total cost of selected add-on services
+
+## Use Case 8 – Booking History & Reporting
+
+This use case stores confirmed reservations and generates booking reports.
+
+- Maintains a list of confirmed reservations
+- Stores booking history in ordered form
+- Generates a report of all confirmed bookings
+- Separates reporting logic from data storage
