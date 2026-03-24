@@ -79,4 +79,14 @@ This use case validates booking requests before they are processed.
 - Accepts user input for guest name and room type
 - Validates booking details using centralized validation logic
 - Uses a custom exception for domain-specific errors
-- Handles invalid booking scenarios gracefully
+- Handles invalid booking scenarios gracefully.
+
+## Use Case 10 – Booking Cancellation & Inventory Rollback
+
+This use case handles booking cancellations and restores room availability.
+
+- Registers confirmed bookings for tracking
+- Cancels bookings safely using reservation IDs
+- Restores room inventory when a booking is cancelled
+- Maintains rollback history using a stack
+- Displays recently released reservation IDs
