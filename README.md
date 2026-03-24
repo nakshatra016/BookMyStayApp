@@ -26,3 +26,13 @@ This use case manages room availability using a centralized inventory system.
 - Initializes default availability for Single, Double, and Suite rooms
 - Retrieves room pricing and characteristics from room objects
 - Displays room details along with current availability
+
+## Use Case 4 – Room Search & Availability Check
+
+This use case allows guests to view available rooms in the hotel.
+
+- Reads room availability from the centralized inventory
+- Retrieves room details such as beds, size, and price from room objects
+- Displays only rooms that currently have availability
+- Performs read-only access without modifying inventory data
+
