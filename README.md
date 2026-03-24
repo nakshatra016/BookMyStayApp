@@ -36,3 +36,11 @@ This use case allows guests to view available rooms in the hotel.
 - Displays only rooms that currently have availability
 - Performs read-only access without modifying inventory data
 
+## Use Case 5 – Booking Request Queue (FIFO)
+
+This use case demonstrates how booking requests are handled using a queue.
+
+- Creates booking requests with guest name and room type
+- Stores requests in a FIFO queue
+- Processes booking requests in the order they were received
+- Ensures fair request handling without modifying room inventory

@@ -1,6 +1,28 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Queue;
+import java.util.LinkedList;
 
+class BookingRequestQueue {
+
+    private Queue<Reservation> requestQueue;
+
+    public BookingRequestQueue() {
+        requestQueue = new LinkedList<>();
+    }
+
+    public void addRequest(Reservation reservation) {
+        requestQueue.offer(reservation);
+    }
+
+    public Reservation getNextRequest() {
+        return requestQueue.poll();
+    }
+
+    public boolean hasPendingRequests() {
+        return !requestQueue.isEmpty();
+    }
+}
 abstract class Room {
 
     protected int numberOfBeds;
@@ -116,21 +138,28 @@ public class BookMyStayApp {
 
     public static void main(String[] args) {
 
-        System.out.println("Room Search\n");
+        System.out.println("Booking Request Queue");
 
-        RoomInventory inventory = new RoomInventory();
+        BookingRequestQueue bookingQueue = new BookingRequestQueue();
 
-        Room singleRoom = new SingleRoom();
-        Room doubleRoom = new DoubleRoom();
-        Room suiteRoom = new SuiteRoom();
+        Reservation r1 = new Reservation("Abhi", "Single");
+        Reservation r2 = new Reservation("Subha", "Double");
+        Reservation r3 = new Reservation("Vanmathi", "Suite");
 
-        RoomSearchService service = new RoomSearchService();
+        bookingQueue.addRequest(r1);
+        bookingQueue.addRequest(r2);
+        bookingQueue.addRequest(r3);
 
-        service.searchAvailableRooms(
-                inventory,
-                singleRoom,
-                doubleRoom,
-                suiteRoom
-        );
+        while (bookingQueue.hasPendingRequests()) {
+
+            Reservation r = bookingQueue.getNextRequest();
+
+            System.out.println(
+                    "Processing booking for Guest: "
+                            + r.getGuestName()
+                            + ", Room Type: "
+                            + r.getRoomType()
+            );
+        }
     }
 }
