@@ -295,7 +295,44 @@ class Reservation {
         return roomType;
     }
 }
+class ConcurrentBookingProcessor implements Runnable {
 
+    private BookingRequestQueue bookingQueue;
+    private RoomInventory inventory;
+    private RoomAllocationService allocationService;
+
+    public ConcurrentBookingProcessor(
+            BookingRequestQueue bookingQueue,
+            RoomInventory inventory,
+            RoomAllocationService allocationService) {
+
+        this.bookingQueue = bookingQueue;
+        this.inventory = inventory;
+        this.allocationService = allocationService;
+    }
+
+    @Override
+    public void run() {
+
+        while (true) {
+
+            Reservation reservation;
+
+            synchronized (bookingQueue) {
+
+                if (!bookingQueue.hasPendingRequests()) {
+                    break;
+                }
+
+                reservation = bookingQueue.getNextRequest();
+            }
+
+            synchronized (inventory) {
+                allocationService.allocateRoom(reservation, inventory);
+            }
+        }
+    }
+}
 class CancellationService {
 
     private Stack<String> releasedRoomIds;
@@ -347,20 +384,42 @@ class CancellationService {
 public class BookMyStayApp {
     public static void main(String[] args) {
 
-        System.out.println("Booking Cancellation");
+        System.out.println("Concurrent Booking Simulation");
 
         RoomInventory inventory = new RoomInventory();
-        CancellationService cancellationService = new CancellationService();
+        BookingRequestQueue bookingQueue = new BookingRequestQueue();
+        RoomAllocationService allocationService = new RoomAllocationService();
 
-        String reservationId = "Single-1";
+        bookingQueue.addRequest(new Reservation("Abhi", "Single"));
+        bookingQueue.addRequest(new Reservation("Vanmathi", "Double"));
+        bookingQueue.addRequest(new Reservation("Kural", "Suite"));
+        bookingQueue.addRequest(new Reservation("Subha", "Single"));
 
-        cancellationService.registerBooking(reservationId, "Single");
+        Thread t1 = new Thread(
+                new ConcurrentBookingProcessor(
+                        bookingQueue, inventory, allocationService
+                )
+        );
 
-        cancellationService.cancelBooking(reservationId, inventory);
+        Thread t2 = new Thread(
+                new ConcurrentBookingProcessor(
+                        bookingQueue, inventory, allocationService
+                )
+        );
 
-        cancellationService.showRollbackHistory();
+        t1.start();
+        t2.start();
 
-        System.out.println("\nUpdated Single Room Availability: "
-                + inventory.getRoomAvailability().get("Single Room"));
+        try {
+            t1.join();
+            t2.join();
+        } catch (InterruptedException e) {
+            System.out.println("Thread execution interrupted.");
+        }
+
+        System.out.println("\nRemaining Inventory:");
+        System.out.println("Single: " + inventory.getRoomAvailability().get("Single Room"));
+        System.out.println("Double: " + inventory.getRoomAvailability().get("Double Room"));
+        System.out.println("Suite: " + inventory.getRoomAvailability().get("Suite Room"));
     }
 }

@@ -90,3 +90,12 @@ This use case handles booking cancellations and restores room availability.
 - Restores room inventory when a booking is cancelled
 - Maintains rollback history using a stack
 - Displays recently released reservation IDs
+
+## Use Case 11 – Concurrent Booking Simulation
+
+This use case simulates multiple users booking rooms simultaneously.
+
+- Uses multiple threads to process booking requests
+- Synchronizes access to shared resources like booking queue and inventory
+- Prevents race conditions during room allocation
+- Demonstrates thread-safe booking processing
